@@ -1,41 +1,65 @@
-import React, { useState } from 'react';
-import { SlArrowRight } from 'react-icons/sl';
-import logobot from './hermesAI.png';
+import React, { useState } from "react";
+import { SlArrowRight } from "react-icons/sl";
+import logobot from "./hermesAI.png";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
+  const [chatHistory, setChatHistory] = useState([
+    "How to use React hooks",
+    "Best practices for CSS",
+    "Project discussion",
+    "Performance optimization",
+  ]);
 
   const toggleSidebar = () => setOpen((prev) => !prev);
 
   return (
-    <div className={`sidebar ${open ? 'open' : 'closed'}`}>
+    <div className={`sidebar ${open ? "open" : ""}`}>
       <button
         onClick={toggleSidebar}
-        className="toggle p-3 rounded-xl bg-transparent border-none"
+        className="toggle"
         aria-label="toggle sidebar"
       >
-        <SlArrowRight className={`text-2xl text-white ${open ? 'open' : ''}`} />
+        <SlArrowRight className="text-white" />
       </button>
-      {open && (
-        <div className="sidebar-content">
-          <div className="top-sidebar">
-            <img src={logobot} alt="Hermes AI" className="logo" />
-          </div>
-          <div className="items">
-            <NavItem title="Chat with Hermes" />
-            <NavItem title="About Hermes" />
-            <NavItem title="Contact Us" />
-          </div>
-          <p className="font">Hermes V1 <br></br>ReactJS</p>
+      <div className="sidebar-content">
+        <div className="top-sidebar">
+          <img src={logobot} alt="Hermes AI" className="logo" />
         </div>
-      )}
+        <div className="items">
+          <NavItem title="New Chat" isPrimary />
+          <div className="chat-history">
+            <h4
+              style={{
+                color: "rgba(255,255,255,0.5)",
+                padding: "0 15px",
+                marginBottom: "10px",
+              }}
+            >
+              Chat History
+            </h4>
+            {chatHistory.map((chat, index) => (
+              <div key={index} className="chat-history-item">
+                {chat}
+              </div>
+            ))}
+          </div>
+        </div>
+        <p className="font">
+          Hermes V1 <br />
+          ReactJS
+        </p>
+      </div>
     </div>
   );
 };
 
-const NavItem = ({ title }) => (
+const NavItem = ({ title, isPrimary }) => (
   <div className="item">
-    <button className="style">
+    <button
+      className="style"
+      style={isPrimary ? { backgroundColor: "#383434" } : {}}
+    >
       <span>{title}</span>
     </button>
   </div>

@@ -1,9 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap");
 
-
+/* Base Styles */
 .App {
   text-align: center;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  background-color: #3a3737;
+  border: none;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -17,8 +24,189 @@
   }
 }
 
-/* contact jsx */ 
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
+/* Header Styles */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  background-color: #3a3737;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  padding: 10px 0;
+  border-bottom: 1px solid #535050;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 140%;
+}
+
+.card-header p {
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 0;
+}
+
+.header-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header-nav a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9em;
+  transition: color 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.header-nav a:hover {
+  color: #fff;
+  background-color: rgba(83, 80, 80, 0.5);
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: relative;
+  width: 60px; /* Fixed width when closed */
+  height: 100vh;
+  background-color: #2a2727;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 900;
+}
+
+.sidebar.open {
+  width: 250px; /* Expanded width when open */
+}
+
+.toggle {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.toggle:hover {
+  background-color: rgba(83, 80, 80, 0.5);
+}
+
+.sidebar.open .toggle {
+  transform: rotate(180deg);
+}
+
+.sidebar-content {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0; /* Start hidden */
+  visibility: hidden; /* Start hidden */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sidebar.open .sidebar-content {
+  opacity: 1; /* Show when open */
+  visibility: visible; /* Show when open */
+  transition-delay: 0.1s; /* Slight delay for smoother effect */
+}
+
+.top-sidebar {
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 80%;
+  max-width: 150px;
+  margin: 20px auto;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.items {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+.style {
+  width: 100%;
+  padding: 10px 15px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.style:hover {
+  background-color: #383434;
+  color: #fff;
+}
+
+.chat-history {
+  margin-top: 20px;
+}
+
+.chat-history-item {
+  padding: 8px 15px;
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.chat-history-item:hover {
+  color: #fff;
+  background-color: #383434;
+}
+
+.font {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8em;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+}
+/* Contact Styles */
 .grid-container-contact {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -44,40 +232,7 @@
   font-size: 14px;
 }
 
-.App-header {
-  background-color: #535050;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.App {
-  max-width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr;;
-  background-color: #3a3737;
-  border: none;
-}
-
+/* Chat Container Styles */
 .containerbot {
   padding: 10px;
   margin: 10px 110px;
@@ -85,7 +240,7 @@
 }
 
 .containerbot::after {
-  content:"";
+  content: "";
   clear: both;
   display: table;
 }
@@ -101,118 +256,86 @@
 .containerbot img.right {
   float: right;
   margin-left: 10px;
-  margin-right:0;
+  margin-right: 0;
 }
 
 .time-right {
-  float: right; 
+  float: right;
   color: #aaa;
 }
 
 .time-left {
-  float: left; 
+  float: left;
   color: #999;
 }
 
+/* Form Styles */
 .form-control {
-  background-color:#3a3737; 
+  background-color: #3a3737;
   height: 50px;
   border-color: #535050;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .form-control:hover {
-  background-color:#3a3737;
+  background-color: #3a3737;
   outline: none;
-  color: #ffffff; 
-} 
+  color: #ffffff;
+}
 
 .form-control:focus {
-  background-color:#3a3737;
-  color: #ffffff; 
+  background-color: #3a3737;
+  color: #ffffff;
   border-color: #535050;
   outline: none;
   box-shadow: none;
-} 
-
+}
 
 .btn {
   background-color: #3a3737;
   border-color: #535050;
   margin-left: 10px;
-  margin-top: 5px;
 }
 
-.btn:hover { 
+.btn:hover {
   background-color: #535050;
   border: none;
   outline-style: none;
   border-color: #535050;
 }
 
-.btn:focus { 
-  background-color: #535050; 
+.btn:focus {
+  background-color: #535050;
   border-color: #535050;
   outline: none;
-  border: none; 
+  border: none;
 }
 
-.card-footer { 
-  height: 10vh;
-}
-
-.input-group-append {
-  margin-left: -5px;
-}
-
-.card-footer p { 
-  color: rgba(255, 255, 255, 0.5); 
-  font-size: 0.9em;
-  margin-top: 10px;
-}
-
+/* Card Styles */
 .card {
   background-color: #3a3737;
   border: none;
   border-radius: 1px;
 }
 
-.card-header {
-  border: none;
-  color: #fff;
-  text-align: left;
-  width: 100%;
-  max-height: 300px;
-  padding-top: 25px;
-}
-
-.card-header.toogle {
-  position: fixed;
-  width: calc(100% - 140px);
-  transition: width 0.3s ease;
-}
-
 .card-footer {
+  height: 9.5vh;
   border: none;
   background-color: #3a3737;
   margin-bottom: 30px;
 }
 
-.sticky-header {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  backdrop-filter: blur(1px); 
-  z-index: 0;
+.card-footer p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9em;
+  margin-top: 10px;
 }
 
-.card-header p { 
-  color: #999; 
-  font-size: 15px;
-  font-weight: bold;
-  font-family: "Montserrat", sans-serif;
+.input-group-append {
+  margin-left: -5px;
 }
 
+/* Layout Styles */
 .row {
   text-align: left;
   color: #fff;
@@ -227,141 +350,65 @@
   align-items: stretch;
 }
 
+/* Scrollbar Styles */
+/* Enhanced Scrollbar Styles */
 #content-chat-feed::-webkit-scrollbar {
-  width: 6px;
+  width: 8px; /* Slightly wider for better visibility */
 }
 
 #content-chat-feed::-webkit-scrollbar-thumb {
-  background-color: #383e43; /* Set the color of the scrollbar thumb */
-  border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
+  background-color: #5a5f64; /* Brighter thumb color */
+  border-radius: 6px; /* More rounded corners */
+  border: 1px solid #5a5f64; /* Subtle border */
+  background-clip: padding-box; /* Ensures border is visible */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+#content-chat-feed::-webkit-scrollbar-thumb:hover {
+  background-color: #5a5f64; /* Lighter on hover */
 }
 
 #content-chat-feed::-webkit-scrollbar-track {
-  background-color: #3a3737; /* Set the color of the scrollbar track */
+  background-color: #5a5f64; /* Darker track for better contrast */
+  border-radius: 6px; /* Matches thumb radius */
+  margin: 4px 0; /* Adds some spacing at top/bottom */
 }
 
-/* Hide the scrollbar on Firefox */
+#content-chat-feed::-webkit-scrollbar-corner {
+  background-color: transparent; /* Clean corner appearance */
+}
+
+/* Firefox scrollbar */
 #content-chat-feed {
   scrollbar-width: thin;
-  scrollbar-color: #6c757d #f5f5f5;
+  scrollbar-color: #4a4f54 #2e2b2b; /* Matches webkit colors */
 }
 
+/* Smooth scrolling behavior */
+#content-chat-feed {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Add a subtle glow effect on active scroll */
+#content-chat-feed::-webkit-scrollbar-thumb:active {
+  background-color: #5d6267;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Utility Styles */
+ul {
+  list-style-type: none;
+}
+
+.margin {
+  margin-top: 100px;
+}
+
+/* Responsive Styles */
 @media only screen and (max-width: 1200px) {
   .input-group {
     margin-left: 10px;
   }
-}
-
-.sidebar .toggle .text-2xl.open {
-  transform: rotate(180deg);
-  position: absolute;
-  right: -15px;
-  top: 50%; 
-  transition: transform 0.8s ease;
-}
-
-.toggle {
-  background-color: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  justify-content: center;
-}
-
-
-.sidebar button:hover {
-  background-color: rgb(24, 24, 24);
-  width: 20px;
-}
-
-
-.sidebar {
-  display: flex;
-  flex-direction: column; 
-  position: relative;
-  justify-content: center;
-  margin-bottom: 0;
-}
-
-.sidebar.open { 
-  width: 95%;
-  background-color: rgba(0, 0, 0, 0.403);
-  transition: width 0.9ms ease;  
-}
-
-.sidebar-content { 
-  margin-bottom: 50px;
-  margin-left: 5px;
-}
-
-.item a  {
-  text-decoration: none;
-}
-
-.font { 
-  color: rgba(255, 255, 255, 0.5); 
-  font-size: 0.8em;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-bottom: 10px; /* Tambahkan margin-bottom jika diperlukan */
-}
-
-.style { 
-  border-radius: 1px;
-  border: none;
-  margin-bottom: 40px;
-  width: 200px;
-  background-color: transparent;
-  color: white;
-  text-align: left;
-  margin-left: 12px;
-  font-size: 0.9em;
-  font-family: "Lato", sans-serif;
-}
-
-.logo {
-  width: 110px; 
-  height: 100px; 
-  position: absolute;
-  margin-left: 40px;
-  margin-top: 30px;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.top-sidebar {
-  text-align: center;
-  padding: 20px; 
-}
-
-ul { 
-  list-style-type: none;
-}
-
-.margin { 
-  margin-top: 100px;
-}
-
-#content-chat-feed::-webkit-scrollbar {
-  width: 6px;
-}
-
-#content-chat-feed::-webkit-scrollbar-thumb {
-  background-color: #383e43; /* Set the color of the scrollbar thumb */
-  border-radius: 4px; /* Set the border-radius of the scrollbar thumb */
-}
-
-#content-chat-feed::-webkit-scrollbar-track {
-  background-color: #3a3737; /* Set the color of the scrollbar track */
-}
-
-/* Hide the scrollbar on Firefox */
-#content-chat-feed {
-  scrollbar-width: thin;
-  scrollbar-color: #6c757d #f5f5f5;
 }
 
 @media (max-width: 1500px) {
@@ -369,14 +416,6 @@ ul {
     margin-bottom: 100px;
     transition: width 1s ease;
     width: 60px;
-  }
-
-  .sidebar.closed button {
-    float: left;
-  }
-
-  .sidebar.open button {
-    float: right;
   }
 }
 
