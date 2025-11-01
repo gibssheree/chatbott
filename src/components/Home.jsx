@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import logobot from "./hermes.png";
-import logouser from "./user.png";
-import "./App.css";
+import logobot from "../hermes.png";
+import { Card } from "react-bootstrap";
+import { FiSend } from "react-icons/fi";
 import {
   build_dictionary,
   clean_input,
@@ -10,26 +9,16 @@ import {
   response_bot,
   get_time,
   get_date,
-} from "./functions.js";
+} from "../functions.js";
 import $ from "jquery";
-import Header from "./components/Header.jsx";
-import Sidebar from "./components/Sidebar.jsx";
-import { Card } from "react-bootstrap";
-import { FiSend } from "react-icons/fi";
-import ParentComponent from "./components/Toggle.jsx";
-import Contact from "./components/Contact.jsx";
-import About from "./components/About.jsx";
 
 // get data
 const brain = require("brain.js");
-const trainingPhrases = require("./data/data-patterns.json");
-const data_responses = require("./data/data-responses.json");
+const trainingPhrases = require("../data/data-patterns.json");
+const data_responses = require("../data/data-responses.json");
 
 // build dictionary
 const dictionary = build_dictionary(trainingPhrases);
-//console.log(dictionary); // print dictionary
-console.log("Input: Front End"); // test encoding text input
-console.log("Encoded: " + encode("Front End")); // test encoding text input
 
 // prepare your training data
 const trainingSet = trainingPhrases.map((dataSet) => {
@@ -250,8 +239,7 @@ function getMathResponse(input, result) {
   }
 }
 
-// component function
-function App() {
+const Home = () => {
   // set current time
   const [currentTime, setCurrentTime] = React.useState(get_time(new Date()));
 
@@ -483,68 +471,50 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <div className="card-side">
-          <Sidebar />
-        </div>
-        <div className="card d-flex flex-column vh-100 overflow-hidden">
-          <Header />
-          <Routes>
-            <Route path="/" element={
-              <div
-                className="card-body"
-                style={{ overflowY: "scroll" }}
-                id="content-chat-feed"
-              >
-                <div className="containerbot">
-                  <img src={logobot} alt="Avatar" style={{ width: "100%" }} />
-                  <div className="row">
-                    <div className="col-sm-8 pt-1">Hi, selamat datang :)</div>
-                    <div className="col-sm-4 pt-1">
-                      <span className="time-right">{currentTime}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            } />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-          <Routes>
-            <Route path="/" element={
-              <div className="card-footer">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="input-chat"
-                    placeholder="Message Hermes"
-                    onKeyDown={_handleKeyDown}
-                  />
-                  <div className="input-group-append">
-                    <button
-                      className="btn btn-primary"
-                      type="button"
-                      onClick={handleButtonSend}
-                    >
-                      <span style={{ color: "black" }}>
-                        <FiSend />
-                      </span>
-                    </button>
-                  </div>
-                </div>
-                <p>
-                  Hermes AI may make mistakes and provide inaccurate information, for
-                  educational purposes see the source code in About Hermes.
-                </p>
-              </div>
-            } />
-          </Routes>
+    <div className="d-flex flex-column vh-100 overflow-hidden">
+      <div
+        className="card-body"
+        style={{ overflowY: "scroll" }}
+        id="content-chat-feed"
+      >
+        <div className="containerbot">
+          <img src={logobot} alt="Avatar" style={{ width: "100%" }} />
+          <div className="row">
+            <div className="col-sm-8 pt-1">Hi, selamat datang :)</div>
+            <div className="col-sm-4 pt-1">
+              <span className="time-right">{currentTime}</span>
+            </div>
+          </div>
         </div>
       </div>
-    </BrowserRouter>
+      <div className="card-footer">
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            id="input-chat"
+            placeholder="Message Hermes"
+            onKeyDown={_handleKeyDown}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={handleButtonSend}
+            >
+              <span style={{ color: "black" }}>
+                <FiSend />
+              </span>
+            </button>
+          </div>
+        </div>
+        <p>
+          Hermes AI may make mistakes and provide inaccurate information, for
+          educational purposes see the source code in About Hermes.
+        </p>
+      </div>
+    </div>
   );
-}
+};
 
-export default App;
+export default Home;

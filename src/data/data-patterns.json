@@ -58,6 +58,8 @@
 
 
   {"phrase": "hi", "result": {"greetings": 1}},
+  {"phrase": "h", "result": {"greetings": 1}},
+  {"phrase": "haii", "result": {"greetings": 1}},
   {"phrase": "hai", "result": {"greetings": 1}},
   {"phrase": "haii", "result": {"greetings": 1}},
   {"phrase": "hay", "result": {"greetings": 1}},
@@ -226,5 +228,11 @@
   {"phrase": "apa itu unklaab", "result": {"infouk": 1}},
   {"phrase": "universitas klabat", "result": {"infouk": 1}},
   {"phrase": "universitas klabaat", "result": {"infouk": 1}},
-  {"phrase": "informasi tentang universitas klabat", "result": {"infouk": 1}}
+  {"phrase": "informasi tentang universitas klabat", "result": {"infouk": 1}},
+  
+  {"phrase": "Siapa itu Steve?", "result": {"teman": 1}},
+  {"phrase": "Steve", "result": {"teman": 1}},
+  {"phrase": "steve", "result": {"teman": 1}},
+  {"phrase": "apa itu steve?", "result": {"teman": 1}},
+  {"phrase": "siapa itu steve", "result": {"teman": 1}}
 ]
