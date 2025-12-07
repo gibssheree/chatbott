@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Hermes AI Chatbot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hermes AI is a React-based chatbot that uses Brain.js to classify user intents from a bag-of-words model. It flattens categorized intent/response JSON, trains a neural network at startup, and replies with context-aware responses, math answers, and time/date info through a chat UI.
 
-## Available Scripts
+## Features
+- Intent classification with Brain.js over flattened pattern/response data
+- Math expression handling (powers, roots, trig, logs, factorial) and time/date replies
+- Profanity filtering and confidence threshold fallback responses
+- Sidebar with history placeholders; routes for Home (chat), About, and Contact
+- Bootstrap styling plus custom CSS; uses a small amount of jQuery for chat feed updates
 
-In the project directory, you can run:
+## Tech Stack
+- React (CRA), React Router, Bootstrap
+- Brain.js for the neural network
+- jQuery for some DOM updates, react-icons for UI icons
 
-### `npm start`
+## Project Structure
+- `src/App.js` — main chat experience with routing
+- `src/components/` — Sidebar, Header, About, Contact, NavTabs, etc.
+- `src/functions.js` — utilities for dictionary building, data flattening, validation, time/date, and response templating
+- `src/data/` — categorized pattern/response JSON files used to build the training set
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Data & Training Flow
+1) Categorized JSON in `src/data` is flattened to `{phrase, result}` pairs and intent → responses lists.  
+2) A dictionary is built from all phrases to create one-hot vectors.  
+3) Brain.js trains a simple network at app startup and predicts the highest-probability intent for each message.  
+4) The UI renders random responses for the predicted intent (or fallback if confidence is low), plus math/time/date handling before intent classification.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Running Locally
+```bash
+npm install
+npm start
+```
+Then open http://localhost:3000.
 
-### `npm test`
+## Testing
+```bash
+npm test
+```
+(Only a basic header render test is provided.)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Known Limitations / Notes
+- Model training runs on the client at startup; it can block the UI on slower devices. Pretraining or async init is recommended.
+- Math evaluation currently relies on `eval`; replacing with a safe parser is advised.
+- jQuery-driven DOM updates inside React components can conflict with React state. A React-only state approach is recommended.
