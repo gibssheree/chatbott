@@ -1,0 +1,182 @@
+{
+  "greetings": {
+    "greetings": [
+      "hallo, semoga kamu baik-baik saja.",
+      "Hi! Semoga harimu menyenangkan.",
+      "Hello! Apa kabar?",
+      "Hi bro! Ada yang bisa saya bantu?",
+      "Hi there! Bagaimana saya bisa membantu Anda?",
+      "Hai! Bagaimana keadaanmu?",
+      "Hello! Ada yang ingin ditanyakan?",
+      "Hai bro! Semoga harimu menyenangkan.",
+      "Hi there! Bagaimana saya bisa membantu Anda hari ini?"
+    ],
+    "kabar": [
+      "Halo! Kabarku baik, terima kasih.",
+      "Hai! Semuanya baik di sini.",
+      "Kabar saya baik, terima kasih.",
+      "Baik Baik Baik",
+      "Hai bro, kabarku sangat baik!"
+    ]
+  },
+
+  "personal-info": {
+    "name": [
+      "Nama saya adalah Hermes.",
+      "Saya adalah Hermes Artificial Intellegence.",
+      "Hermes adalah nama Saya.",
+      "My name is Hermes."
+    ],
+    "maker": [
+      "Hermes diciptakan oleh Sir Semmy, Gilbert Clay Aaron.",
+      "Sir Semmy, Gilbert Clay Aaron adalah pencipta Hermes.",
+      "Sir Semmy, Gilbert Clay Aaron yang menciptakan saya, Hermes.",
+      "Saya diciptakan oleh Sir Semmy, Gilbert Clay Aaron.",
+      "Sir Semmy, Gilbert Clay Aaron adalah otak di balik Hermes.",
+      "Pencipta saya adalah Sir Semmy, Gilbert Clay Aaron.",
+      "Sir Semmy, Gilbert Clay Aaron menciptakan Hermes untuk memberikan informasi dan interaksi yang lebih baik.",
+      "Hermes was created by Sir Semmy, Gilbert Clay Aaron.",
+      "Sir Semmy, Gilbert Clay Aaron is the creator of Hermes.",
+      "Sir Semmy, Gilbert Clay Aaron made me, Hermes.",
+      "I was created by Sir Semmy, Gilbert Clay Aaron.",
+      "Sir Semmy, Gilbert Clay Aaron is the brain behind Hermes.",
+      "My creator is Sir Semmy, Gilbert Clay Aaron.",
+      "Hermes was created by Sir Semmy, Gilbert Clay Aaron for better information and interaction."
+    ],
+    "definition": [
+      "Hermes adalah Chatbot yang bertujuan untuk memberikan informasi yang ingin anda tahu.",
+      "Hermes diciptakan untuk memberikan informasi yang relevan dan bermanfaat.",
+      "Hermes hadir untuk membantu Anda dengan pertanyaan dan memberikan pengetahuan yang tersedia.",
+      "Hermes adalah Chatbot yang menyediakan informasi umum dan tersedia di dunia.",
+      "Hermes is a Chatbot designed to provide information you want to know.",
+      "Hermes was created to provide relevant and useful information.",
+      "Hermes is here to assist you with questions and provide available knowledge.",
+      "Hermes is a Chatbot that provides general information available worldwide."
+    ]
+  },
+
+  "entertainment": {
+    "jokes": [
+      "Kenapa burung tidak pernah telat datang ke kelas? Karena dia selalu terbang!",
+      "Kendaraan apa yang bunyinya paling imut? Kereta, naik kereta api cute cute cute",
+      "Belut apa yang harus sangat kita hindari? Belut-ang sama teman terus nggak dibayar-bayar.",
+      "Buah apa yang penampilannya tidak segar? Buah alpucat",
+      "Kalau bundaran HI diputerin sebanyak 3 kali namanya jadi apa? HIHIHI"
+    ]
+  },
+
+  "general-knowledge": {
+    "geography": {
+      "jumpenduduk": [
+        "Menurut riset terakhir (3 Oktober 2023), urutan negara dengan jumlah penduduk terbanyak adalah :<br>1. India: 1,43 miliar jiwa<br>2. Tiongkok: 1,42 miliar jiwa<br>3. Indonesia: 278,11 juta jiwa<br>4. Pakistan: 241,69 juta jiwa<br>5. Bangladesh: 173,4 juta jiwa"
+      ],
+      "gedunghi": [
+        "Menurut riset terakhir (5 agustus 2023), daftar gedung-gedung tertinggi didunia adalah :<br>1. Burj Khalifa, Dubai = 828 meter<br>2. Shanghai Tower, China = 632 meter<br>3. Makkah Royal Clock Tower, Arab Saudi = 601 meter<br>4. Ping An Finance Center, China = 599,1 meter<br>5. Lotte World Tower, Korea Selatan = 554,5 meter"
+      ],
+      "bigdanau": [
+        "Menurut riset terakhir (1 Mei 2023), daftar danau-danau terbesar didunia adalah :<br>1. Laut Kaspia = 386.400 km²<br>2. Danau Superior = 82.100 km²<br>3. Danau Victoria = 69.485 km²<br>4. Danau Huron = 59.600 km²<br>5. Danau Michigan = 57.800 km²"
+      ],
+      "bigpulau": [
+        "Menurut riset terakhir (30 Desember 2021), daftar pulau-pulau terbesar didunia adalah :<br>1. Greenland = 2.166.086 km²<br>2. New Guinea = 821.400 km²<br>3. Kalimantan = 748.168 km²<br>4. Madagaskar = 587.295 km²<br>5. Baffin = 507.451 km²"
+      ],
+      "longsung": [
+        "Menurut riset terakhir (14 Mei 2023), daftar sungai-sungai terpanjang di dunia adalah :<br>1. Sungai Nil = 6.650 km<br>2. Sungai Amazon = 6.400 km<br>3. Sungai Yangtze = 6.300 km<br>4. Sungai Mississippi = 6.270 km<br>5. Sungai Yenisei = 5.500 km"
+      ],
+      "bigcit": [
+        "Menurut riset terakhir (7 Agustus 2023), daftar kota-kota terluas/terbesar di dunia adalah :<br>1. Hulunbuir, Mongolia Dalam = 263.953 km²<br>2. Altamira, Brasil = 159.533 km²<br>3. Krasnoyarsk, Rusia = 97.890 km²<br>4. Baotou, Tiongkok = 65.000 km²<br>5. Mount Isa, Australia = 42.904 km²"
+      ],
+      "talmoun": [
+        "Menurut riset terakhir (9 Januari 2023), daftar gunung-gunung tertinggi di dunia adalah :<br>1. Gunung Everest = 8.848,86 meter<br>2. Gunung K2 = 8.611 meter<br>3. Gunung Kangchenjunga = 8.598 meter<br>4. Gunung Lhotse = 8.516 meter<br>5. Gunung Makalu = 8.485 meter"
+      ],
+      "talmouni": [
+        "Menurut riset terakhir (8 Mei 2023), daftar gunung-gunung tertinggi di Indonesia adalah :<br>1. Puncak Jaya, Papua = 4.884 mdpl<br>2. Puncak Mandala, Papua = 4.760 mdpl<br>3. Puncak Trikora, Papua = 4.750 mdpl<br>4. Ngga Pilimsit, Papua = 4.717 mdpl<br>5. Gunung Kerinci, Jambi = 3.805 mdpl"
+      ],
+      "benua": [
+        "7 benua di dunia: Asia, Afrika, Amerika Utara, Amerika Selatan, Australia, Antarktika, dan Eropa."
+      ]
+    },
+    "astronomy": {
+      "bigstar": [
+        "Menurut riset terakhir (12 Februari 2023), daftar bintang-bintang terbesar di alam semesta adalah :<br>1. UY Scuti = 1.708x Matahari<br>2. KY Cygni = 1.450x Matahari<br>3. RW Cephei = 1.500x Matahari<br>4. VY Canis Majoris = 1.064-1.173x Matahari<br>5. WOH G64 = 1.540x Matahari"
+      ],
+      "tatasurya": [
+        "Planet di tata surya ada 8: Merkurius, Venus, Bumi, Mars, Jupiter, Saturnus, Uranus, dan Neptunus."
+      ]
+    },
+    "countries": {
+      "jumlahnegara": [
+        "Jumlah negara di dunia adalah 195 Negara yang diakui PBB."
+      ],
+      "namanegara": [
+        "Ada 195 negara yang diakui PBB di seluruh dunia, meliputi negara-negara di Asia, Afrika, Eropa, Amerika, dan Oseania."
+      ],
+      "bigcitypopul": [
+        "Negara dengan penduduk terbanyak (2023):<br>1. India = 1,43 miliar<br>2. China = 1,42 miliar<br>3. Amerika Serikat = 334 juta<br>4. Indonesia = 277,7 juta<br>5. Pakistan = 240,8 juta"
+      ],
+      "bigcitymil": [
+        "Negara dengan militer terkuat:<br>1. Amerika Serikat<br>2. Rusia<br>3. China<br>4. India<br>5. Jepang"
+      ],
+      "strukturgov": [
+        "Struktur pemerintahan di dunia: Monarki Absolut, Monarki Konstitusional, Republik Parlementer, Republik Presidensial, Sistem Federal, Sistem Unitary, Demokrasi, dan Otoritarianisme."
+      ]
+    },
+    "indonesia": {
+      "sejindo": [
+        "Sejarah kemerdekaan Indonesia dimulai dari BPUPKI (29 April 1945), pembentukan PPKI (7 Agustus 1945), hingga Proklamasi Kemerdekaan pada 17 Agustus 1945 yang dibacakan oleh Ir. Soekarno di Jl. Pegangsaan Timur No. 56, Jakarta."
+      ],
+      "provindo": [
+        "Indonesia memiliki 38 provinsi, dari Aceh hingga Papua Barat Daya (data 2023)."
+      ],
+      "jumkabkot": [
+        "Indonesia memiliki 416 Kabupaten dan 98 Kota (data 2023). Provinsi dengan kabupaten dan kota terbanyak adalah Jawa Timur."
+      ]
+    },
+    "biology": {
+      "animals": [
+        "Hewan di dunia sangat beragam, seperti: Anjing, Kucing, Gajah, Singa, Jerapah, Kuda, dll."
+      ],
+      "desease": [
+        "Beberapa penyakit umum: Influenza (obat: antivirus), Pilek (obat: parasetamol/ibuprofen), Sakit Kepala (obat: aspirin), Demam (obat: antipiretik), Diare (obat: rehidrasi oral)."
+      ]
+    },
+    "technology": {
+      "tekcom": [
+        "5 perusahaan teknologi terbesar di dunia (2023):<br>1. Apple = $3,01 triliun<br>2. Microsoft = $2,35 triliun<br>3. Alphabet (Google) = $2,15 triliun<br>4. Amazon = $1,65 triliun<br>5. Tencent = $1,45 triliun"
+      ]
+    }
+  },
+
+  "education": {
+    "infouk": [
+      "Universitas Klabat (Unklab) adalah perguruan tinggi swasta yang didirikan oleh Gereja Masehi Advent Hari Ketujuh. Terletak di Sulawesi Utara, Unklab menyelenggarakan program sarjana dan pascasarjana di berbagai bidang dengan komitmen memberikan pendidikan berkualitas."
+    ]
+  },
+
+  "people": {
+    "teman": [
+      "Steve adalah teman dari Akmal.",
+      "Steve adalah teman dari Ibil.",
+      "Steve itu cowonya Faith.",
+      "Oh Steve? Dia teman dari Akmal dan Ibil!",
+      "Kalau Steve, dia tuh pacarnya Faith. Teman dari Akmal juga.",
+      "Steve itu nama temannya Akmal dan Ibil, dia juga pacar dari Faith loh!"
+    ],
+    "elon": [
+      "Elon Musk adalah seorang pengusaha sukses dan visioner dari Afrika Selatan.",
+      "Elon Musk adalah CEO dari Tesla, SpaceX, dan beberapa perusahaan teknologi lainnya.",
+      "Elon Musk dikenal sebagai CEO Tesla dan SpaceX. Dia adalah salah satu pengusaha paling berpengaruh di dunia teknologi.",
+      "Elon Musk adalah entrepreneur yang mendirikan dan memimpin beberapa perusahaan seperti Tesla, SpaceX, Neuralink, dan The Boring Company.",
+      "Elon Musk? Dia CEO Tesla yang terkenal dengan mobil listrik dan roket SpaceX!",
+      "Elon Musk adalah salah satu orang terkaya di dunia. Dia CEO dari Tesla dan SpaceX, juga pendiri perusahaan lain seperti Neuralink dan The Boring Company."
+    ],
+    "angel": [
+      "Angel adalah busu busu dari gilbert",
+      "Angel adalah bubu yang sangat busu dan tidak mandi 2 hari",
+      "Angel adalah sayang gilbert dan paling cantik seduniaaa aw aww",
+      "Angel adalah pacar gilbert",
+      "Angel sayang gilbert",
+      "Angel is love nya gilbert",
+      "Angel sayang gilberttt <3 <3"
+    ]
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "greetings": {
+    "description": "Sapaan dan percakapan dasar",
+    "intents": {
+      "greetings": [
+        { "phrase": "hi" },
+        { "phrase": "h" },
+        { "phrase": "haii" },
+        { "phrase": "hai" },
+        { "phrase": "hay" },
+        { "phrase": "halo" },
+        { "phrase": "hallo" },
+        { "phrase": "haloo" },
+        { "phrase": "halloo" },
+        { "phrase": "hello" },
+        { "phrase": "hi bro" },
+        { "phrase": "hi there" }
+      ],
+      "kabar": [
+        { "phrase": "apa kabarmu" },
+        { "phrase": "apa kabar" },
+        { "phrase": "bagaimana kabarmu" },
+        { "phrase": "gimana kabarnya" },
+        { "phrase": "gimana kabar" },
+        { "phrase": "gimana kabaar" },
+        { "phrase": "gimana kabarr" }
+      ]
+    }
+  },
+
+  "personal-info": {
+    "description": "Informasi tentang bot (nama, pembuat, definisi)",
+    "intents": {
+      "name": [
+        { "phrase": "nama" },
+        { "phrase": "siapa nama kamu" },
+        { "phrase": "nama kamu siapa" },
+        { "phrase": "siapa namamu" },
+        { "phrase": "beri tahu nama kamu" },
+        { "phrase": "siapa yang berbicara" },
+        { "phrase": "bagaimana kamu dipanggil" },
+        { "phrase": "kasih tahu aku namamu" },
+        { "phrase": "siapa yang sedang bicara" },
+        { "phrase": "siapa kamu" },
+        { "phrase": "what is your name" },
+        { "phrase": "your name" },
+        { "phrase": "name" },
+        { "phrase": "tell me your name" },
+        { "phrase": "who are you" },
+        { "phrase": "how can I call you" },
+        { "phrase": "give me your name" },
+        { "phrase": "who is speaking" },
+        { "phrase": "may I know your name" },
+        { "phrase": "what's your identity" },
+        { "phrase": "who is behind this chat" },
+        { "phrase": "who am I talking to" },
+        { "phrase": "introduce yourself" }
+      ],
+      "maker": [
+        { "phrase": "siapa yang menciptakan kamu" },
+        { "phrase": "pencipta kamu" },
+        { "phrase": "siapa yang menciptakan hermes" },
+        { "phrase": "hermes ciptaan siapa" },
+        { "phrase": "who created you" },
+        { "phrase": "who create you" },
+        { "phrase": "creator" },
+        { "phrase": "your creator" },
+        { "phrase": "who made Hermes" },
+        { "phrase": "Hermes creator" }
+      ],
+      "definition": [
+        { "phrase": "hermes" },
+        { "phrase": "hermes AI" },
+        { "phrase": "hermes adalah" },
+        { "phrase": "apa itu hermes AI" },
+        { "phrase": "Hermes" },
+        { "phrase": "Hermes AI" },
+        { "phrase": "Hermes is" },
+        { "phrase": "what is Hermes AI" }
+      ]
+    }
+  },
+
+  "entertainment": {
+    "description": "Hiburan seperti jokes",
+    "intents": {
+      "jokes": [
+        { "phrase": "Berikan saya candaan" },
+        { "phrase": "Berikan saya jokes" },
+        { "phrase": "Berikan saya joke" },
+        { "phrase": "Berikan saya gurauan" },
+        { "phrase": "tell me a joke" },
+        { "phrase": "give me a joke" },
+        { "phrase": "jokes" }
+      ]
+    }
+  },
+
+  "general-knowledge": {
+    "description": "Pengetahuan umum dunia",
+    "subcategories": {
+      "geography": {
+        "description": "Geografi dunia (gedung, danau, pulau, gunung, sungai, kota)",
+        "intents": {
+          "jumpenduduk": [
+            { "phrase": "berapakah jumlah penduduk didunia pada tahun 2023" },
+            { "phrase": "berapa banyak penduduk didunia" },
+            { "phrase": "banyak penduduk dunia" },
+            { "phrase": "jumlah penduduk dunia tahun 2023" }
+          ],
+          "gedunghi": [
+            { "phrase": "apa gedung tertinggi didunia saat ini" },
+            { "phrase": "gedung tertinggi didunia pada tahun 2023" },
+            { "phrase": "gedung tertinggi" },
+            { "phrase": "gedung paling tinggi didunia tahun 2023" },
+            { "phrase": "gedung tertinggi didunia" }
+          ],
+          "bigdanau": [
+            { "phrase": "apa danau terbesar didunia" },
+            { "phrase": "danau terbesar didunia" },
+            { "phrase": "danau terbesar" },
+            { "phrase": "danau paling besar didunia" }
+          ],
+          "bigpulau": [
+            { "phrase": "apa pulau terbesar didunia" },
+            { "phrase": "pulau terbesar didunia" },
+            { "phrase": "pulau terbesar" },
+            { "phrase": "pulau paling besar didunia" }
+          ],
+          "longsung": [
+            { "phrase": "apa sungai terpanjang didunia" },
+            { "phrase": "sungai terpanjang didunia" },
+            { "phrase": "sungai terpanjang" },
+            { "phrase": "sungai paling panjang didunia" }
+          ],
+          "bigcit": [
+            { "phrase": "apa kota terluas didunia saat ini" },
+            { "phrase": "kota terluas didunia pada tahun 2023" },
+            { "phrase": "kota terluas" },
+            { "phrase": "kota paling luas didunia tahun 2023" },
+            { "phrase": "kota terluas didunia" },
+            { "phrase": "apa kota terbesar didunia saat ini" },
+            { "phrase": "kota terbesar didunia pada tahun 2023" },
+            { "phrase": "kota terbesar" },
+            { "phrase": "kota paling besar didunia tahun 2023" },
+            { "phrase": "kota terbesar didunia" },
+            { "phrase": "kota terbesar di dunia" }
+          ],
+          "talmoun": [
+            { "phrase": "apa gunung tertinggi didunia" },
+            { "phrase": "gunung tertinggi didunia" },
+            { "phrase": "gunung paling tinggi didunia" }
+          ],
+          "talmouni": [
+            { "phrase": "apa gunung tertinggi di indonesia" },
+            { "phrase": "gunung tertinggi di indonesia" },
+            { "phrase": "gunung paling tinggi di indonesia" }
+          ],
+          "benua": [
+            { "phrase": "benua benua di dunia" },
+            { "phrase": "benua di dunia" },
+            { "phrase": "apa saja benua benua di dunia" },
+            { "phrase": "benua benua" },
+            { "phrase": "benua yang ada di dunia" }
+          ]
+        }
+      },
+      "astronomy": {
+        "description": "Astronomi (bintang, planet, tata surya)",
+        "intents": {
+          "bigstar": [
+            { "phrase": "apa bintang terbesar dialam semesta" },
+            { "phrase": "bintang terbesar dialam semesta" },
+            { "phrase": "bintang terbesar" },
+            { "phrase": "bintang paling besar didunia" }
+          ],
+          "tatasurya": [
+            { "phrase": "apa planet di tata surya" },
+            { "phrase": "planet di tata surya" },
+            { "phrase": "apa planet planet di tata surya" },
+            { "phrase": "planet planet yang ada di tata surya" },
+            { "phrase": "nama nama planet di tata surya" },
+            { "phrase": "planet tata surya" },
+            { "phrase": "planet-planet di tata surya" }
+          ]
+        }
+      },
+      "countries": {
+        "description": "Negara-negara di dunia",
+        "intents": {
+          "jumlahnegara": [
+            { "phrase": "Berapa jumlah negara di dunia" },
+            { "phrase": "ada berapa jumlah negara di dunia" },
+            { "phrase": "ada berapa negara di dunia" },
+            { "phrase": "jumlah negara di dunia" }
+          ],
+          "namanegara": [
+            { "phrase": "nama nama negara di dunia" },
+            { "phrase": "nama nama negara" },
+            { "phrase": "negara di dunia" },
+            { "phrase": "negara-negara di dunia" },
+            { "phrase": "negara negara di dunia" },
+            { "phrase": "nama negara di dunia" }
+          ],
+          "bigcitypopul": [
+            { "phrase": "negara terbesar berdasarkan populasi" },
+            { "phrase": "negara berpenduduk terbesar di dunia" },
+            { "phrase": "negara terbesar di dunia" },
+            { "phrase": "penduduk terbanyak di dunia" }
+          ],
+          "bigcitymil": [
+            { "phrase": "negara militer terbesar" },
+            { "phrase": "negara militer" },
+            { "phrase": "negara militer terkuat" },
+            { "phrase": "negara terbesar berdasarkan militer" },
+            { "phrase": "negara militer terbesar di dunia" },
+            { "phrase": "negara militer di dunia" },
+            { "phrase": "negara militer terkuat di dunia" },
+            { "phrase": "negara terbesar berdasarkan militer di dunia" }
+          ],
+          "strukturgov": [
+            { "phrase": "struktur pemerintahan di dunia" },
+            { "phrase": "apa saja struktur pemerintah di dunia" },
+            { "phrase": "struktur pemerintahan" },
+            { "phrase": "apa saja struktur pemerintahan yang ada di dunia" }
+          ]
+        }
+      },
+      "indonesia": {
+        "description": "Informasi tentang Indonesia",
+        "intents": {
+          "sejindo": [
+            {
+              "phrase": "bagaimana sejarah terbentuknya negara republik indonesia"
+            },
+            { "phrase": "sejarah terbentuknya republik indonesia" },
+            { "phrase": "sejarah indonesia terbentuk" },
+            { "phrase": "sejarah republik indonesia" }
+          ],
+          "provindo": [
+            { "phrase": "apa saja provinsi di indonesia" },
+            { "phrase": "daftar provinsi privinsi di indonesia" },
+            { "phrase": "semua provinsi yang ada di Indonesia" },
+            { "phrase": "provinsi di indonesia" }
+          ],
+          "jumkabkot": [
+            { "phrase": "jumlah kabupaten dan kota Indonesia" },
+            { "phrase": "berapa kabupaten dan kota yang ada di Indonesia" },
+            { "phrase": "berapa banyak kabupaten dan kota di Indonesia" },
+            {
+              "phrase": "apa provinsi Indonesia dengan jumlah kabupaten dan kota terbanyak"
+            }
+          ]
+        }
+      },
+      "biology": {
+        "description": "Biologi (hewan, penyakit)",
+        "intents": {
+          "animals": [
+            { "phrase": "hewan hewan yang ada di dunia" },
+            { "phrase": "hewan di dunia" },
+            { "phrase": "nama nama hewan di dunia" },
+            { "phrase": "nama hewan di dunia" },
+            { "phrase": "hewan yang ada di dunia" }
+          ],
+          "desease": [
+            { "phrase": "nama penyakit di dunia" },
+            { "phrase": "penyakit di dunia" },
+            { "phrase": "penyakit beserta obat di dunia" },
+            { "phrase": "penyakit dan obat" },
+            { "phrase": "obat dan penyakit" }
+          ]
+        }
+      },
+      "technology": {
+        "description": "Teknologi dan perusahaan",
+        "intents": {
+          "tekcom": [
+            { "phrase": "perusahaan teknologi di dunia" },
+            { "phrase": "perusahaan teknologi di duniaa" },
+            { "phrase": "perusahaan perusahaan teknologi di dunia" },
+            { "phrase": "perusahan teknologi terbesar di dunia" },
+            { "phrase": "perusahaan teknologi dunia" }
+          ]
+        }
+      }
+    }
+  },
+
+  "education": {
+    "description": "Pendidikan dan institusi",
+    "intents": {
+      "infouk": [
+        { "phrase": "apa yang kamu tahu tentang unklab" },
+        { "phrase": "apa itu unklab" },
+        { "phrase": "apa itu unklaab" },
+        { "phrase": "universitas klabat" },
+        { "phrase": "universitas klabaat" },
+        { "phrase": "informasi tentang universitas klabat" },
+        { "phrase": "unklab" },
+        { "phrase": "unklab itu apa" }
+      ]
+    }
+  },
+
+  "people": {
+    "description": "Informasi tentang orang-orang",
+    "intents": {
+      "teman": [
+        { "phrase": "Siapa itu Steve?" },
+        { "phrase": "siapa itu Steve" },
+        { "phrase": "Steve" },
+        { "phrase": "steve" },
+        { "phrase": "apa itu steve?" },
+        { "phrase": "siapa itu steve" },
+        { "phrase": "siapa steve" },
+        { "phrase": "kamu kenal steve" },
+        { "phrase": "kamu tau steve" },
+        { "phrase": "cerita tentang steve" },
+        { "phrase": "informasi tentang steve" },
+        { "phrase": "steve itu siapa" },
+        { "phrase": "steve siapa" },
+        { "phrase": "siapa yang bernama steve" },
+        { "phrase": "tell me about steve" },
+        { "phrase": "who is steve" }
+      ],
+      "elon": [
+        { "phrase": "siapa itu Elon Musk?" },
+        { "phrase": "siapa itu elon musk?" },
+        { "phrase": "siapa itu elon musk" },
+        { "phrase": "elon musk" },
+        { "phrase": "Elon Musk" },
+        { "phrase": "siapa elon musk" },
+        { "phrase": "kamu kenal elon musk" },
+        { "phrase": "kamu tau elon musk" },
+        { "phrase": "cerita tentang elon musk" },
+        { "phrase": "informasi tentang elon musk" },
+        { "phrase": "elon musk itu siapa" },
+        { "phrase": "elon musk siapa" },
+        { "phrase": "who is elon musk" },
+        { "phrase": "tell me about elon musk" },
+        { "phrase": "apa yang kamu tahu tentang elon musk" }
+      ],
+      "angel": [
+        { "phrase": "Siapa itu angel" },
+        { "phrase": "angel itu siapa" },
+        { "phrase": "angel siapa" },
+        { "phrase": "siapa itu angel" },
+        { "phrase": "angel" },
+        { "phrase": "siapa angel" },
+        { "phrase": "angel siapaa" },
+        { "phrase": "apa itu angel" },
+        { "phrase": "angel adalah" }
+      ]
+    }
+  }
+}

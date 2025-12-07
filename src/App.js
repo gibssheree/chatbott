@@ -10,6 +10,11 @@ import {
   response_bot,
   get_time,
   get_date,
+  flattenPatterns,
+  flattenResponses,
+  getCategoryPath,
+  getIntentsByCategory,
+  validateCategorizedData,
 } from "./functions.js";
 import $ from "jquery";
 import Header from "./components/Header.jsx";
@@ -22,8 +27,40 @@ import About from "./components/About.jsx";
 
 // get data
 const brain = require("brain.js");
-const trainingPhrases = require("./data/data-patterns.json");
-const data_responses = require("./data/data-responses.json");
+
+// Toggle between categorized or flat data
+const USE_CATEGORIZED_DATA = true; // Set to true untuk gunakan data yang dikategorikan
+
+let trainingPhrases, data_responses;
+
+if (USE_CATEGORIZED_DATA) {
+  // Load categorized data
+  const categorizedPatterns = require("./data/data-patterns-categorized.json");
+  const categorizedResponses = require("./data/data-responses-categorized.json");
+
+  // Validate data
+  const validation = validateCategorizedData(
+    categorizedPatterns,
+    categorizedResponses,
+  );
+  if (!validation.valid) {
+    console.error("❌ Data validation errors:", validation.errors);
+  }
+  if (validation.warnings.length > 0) {
+    console.warn("⚠️  Data validation warnings:", validation.warnings);
+  }
+
+  // Convert to flat format
+  trainingPhrases = flattenPatterns(categorizedPatterns);
+  data_responses = flattenResponses(categorizedResponses);
+
+  // Log categories info
+  console.log("📂 Categories structure:");
+  const intentsByCategory = getIntentsByCategory(categorizedPatterns);
+  Object.keys(intentsByCategory).forEach((category) => {
+    console.log(`  ${category}: ${intentsByCategory[category].join(", ")}`);
+  });
+}
 
 // build dictionary
 const dictionary = build_dictionary(trainingPhrases);
@@ -45,7 +82,7 @@ model_network.train(trainingSet);
 function encode(phrase) {
   const phraseTokens = phrase.split(" ");
   const encodedPhrase = dictionary.map((word) =>
-    phraseTokens.includes(word) ? 1 : 0
+    phraseTokens.includes(word) ? 1 : 0,
   );
 
   return encodedPhrase;
@@ -87,7 +124,7 @@ function calculateMathExpression(expression) {
         (match, p1, p2, p3) => {
           const value = p1 || p2 || p3;
           return Math.sqrt(eval(value));
-        }
+        },
       );
     }
 
@@ -100,14 +137,14 @@ function calculateMathExpression(expression) {
         powRegex1,
         (match, base, exp) => {
           return Math.pow(parseFloat(base), parseFloat(exp));
-        }
+        },
       );
 
       processedExpression = processedExpression.replace(
         powRegex2,
         (match, base, exp) => {
           return Math.pow(eval(base), eval(exp));
-        }
+        },
       );
     }
 
@@ -124,14 +161,14 @@ function calculateMathExpression(expression) {
         (match, p1, p2) => {
           const value = p1 || p2;
           return Math.log10(eval(value));
-        }
+        },
       );
 
       processedExpression = processedExpression.replace(
         lnRegex,
         (match, p1) => {
           return Math.log(eval(p1));
-        }
+        },
       );
     }
 
@@ -149,21 +186,21 @@ function calculateMathExpression(expression) {
         sinRegex,
         (match, p1) => {
           return Math.sin((eval(p1) * Math.PI) / 180); // konversi ke radian
-        }
+        },
       );
 
       processedExpression = processedExpression.replace(
         cosRegex,
         (match, p1) => {
           return Math.cos((eval(p1) * Math.PI) / 180); // konversi ke radian
-        }
+        },
       );
 
       processedExpression = processedExpression.replace(
         tanRegex,
         (match, p1) => {
           return Math.tan((eval(p1) * Math.PI) / 180); // konversi ke radian
-        }
+        },
       );
     }
 
@@ -174,7 +211,7 @@ function calculateMathExpression(expression) {
         factRegex,
         (match, p1) => {
           return factorial(parseInt(p1));
-        }
+        },
       );
     }
 
@@ -217,11 +254,15 @@ function isMathExpression(input) {
 
   // Harus ada operator matematika atau fungsi matematika
   const hasOperator = /[-+*/^]/.test(input);
-  const hasFunction = /sqrt|akar|pow|log|ln|sin|cos|tan|!/.test(input.toLowerCase());
+  const hasFunction = /sqrt|akar|pow|log|ln|sin|cos|tan|!/.test(
+    input.toLowerCase(),
+  );
   const hasParentheses = /[()]/.test(input);
 
-  return (hasOperator || hasFunction || hasParentheses) && 
-         mathPatterns.some((pattern) => pattern.test(input));
+  return (
+    (hasOperator || hasFunction || hasParentheses) &&
+    mathPatterns.some((pattern) => pattern.test(input))
+  );
 }
 
 // Fungsi untuk mendapatkan respons matematika yang lebih informatif
@@ -270,7 +311,7 @@ function App() {
     // predict the response
     const json_output = model_network.run(encoded);
     console.log(
-      "Max Categories: " + Object.values(json_output).length + " intents."
+      "Max Categories: " + Object.values(json_output).length + " intents.",
     );
     console.log(json_output);
 
@@ -282,7 +323,7 @@ function App() {
     const pred_prob = json_output["" + pred_label];
 
     const pred_responses = data_responses.find(
-      (response) => response[pred_label] != null
+      (response) => response[pred_label] != null,
     );
     const responsesArray = pred_responses[pred_label];
 
@@ -295,7 +336,7 @@ function App() {
     }
 
     console.log(
-      "Predicted label (" + pred_label + "), probability (" + pred_prob + ")."
+      "Predicted label (" + pred_label + "), probability (" + pred_prob + ").",
     );
     return [pred_response, pred_prob];
   }
@@ -315,7 +356,7 @@ function App() {
         ];
 
       $("#content-chat-feed").append(
-        response_bot(randomResponse, 100, get_time(new Date()))
+        response_bot(randomResponse, 100, get_time(new Date())),
       );
       force_scroll_bottom();
     } else if (containsProfanity(input_chat)) {
@@ -333,14 +374,14 @@ function App() {
           ];
 
         $("#content-chat-feed").append(
-          response_bot(randomResponse, 100, get_time(new Date()))
+          response_bot(randomResponse, 100, get_time(new Date())),
         );
         force_scroll_bottom();
       }, 1000);
     } else {
       // Tambahkan input user ke chat feed
       $("#content-chat-feed").append(
-        response_user(input_chat, get_time(new Date()))
+        response_user(input_chat, get_time(new Date())),
       );
       force_scroll_bottom();
 
@@ -351,7 +392,7 @@ function App() {
 
         // Tambahkan respons matematika ke chat feed
         $("#content-chat-feed").append(
-          response_bot(mathResponse, 100, get_time(new Date()))
+          response_bot(mathResponse, 100, get_time(new Date())),
         );
         force_scroll_bottom();
         $("#input-chat").val("");
@@ -378,7 +419,7 @@ function App() {
           ];
 
         $("#content-chat-feed").append(
-          response_bot(randomResponse, 100, get_time(new Date()))
+          response_bot(randomResponse, 100, get_time(new Date())),
         );
       } else if (
         input_chat.toLowerCase().includes("tanggal sekarang") ||
@@ -401,34 +442,34 @@ function App() {
             Math.floor(Math.random() * possibleResponses.length)
           ];
         $("#content-chat-feed").append(
-          response_bot(randomResponse, 100, get_date(new Date()))
+          response_bot(randomResponse, 100, get_date(new Date())),
         );
       } else if (
         input_chat.toLowerCase().includes("bulan ini tanggal berapa")
       ) {
         const specificResponse = `Sekarang bulan ${new Date().toLocaleString(
           "default",
-          { month: "long" }
+          { month: "long" },
         )}, tanggal: ${new Date().getDate()}`;
         $("#content-chat-feed").append(
-          response_bot(specificResponse, 100, get_date(new Date()))
+          response_bot(specificResponse, 100, get_date(new Date())),
         );
       } else if (
         input_chat.toLowerCase().includes("tahun ini tanggal berapa")
       ) {
         const specificResponse = `Sekarang tahun ${new Date().getFullYear()}, tanggal: ${new Date().getDate()}`;
         $("#content-chat-feed").append(
-          response_bot(specificResponse, 100, get_date(new Date()))
+          response_bot(specificResponse, 100, get_date(new Date())),
         );
       } else if (input_chat.toLowerCase().includes("hari ini hari apa")) {
         const dayOfWeek = new Date().toLocaleDateString("id-ID", {
           weekday: "long",
         });
         const specificResponse = `Hari ini adalah ${dayOfWeek}, ${get_date(
-          new Date()
+          new Date(),
         )}`;
         $("#content-chat-feed").append(
-          response_bot(specificResponse, 100, get_date(new Date()))
+          response_bot(specificResponse, 100, get_date(new Date())),
         );
       } else {
         // Jika tidak, melakukan prediksi respons chatbot seperti sebelumnya
@@ -441,15 +482,15 @@ function App() {
         if (prob_val > threshold) {
           // Menambahkan respons chatbot tanpa waktu dan tanggal saat ini
           $("#content-chat-feed").append(
-            response_bot(respond_bot, prob_val, get_time(new Date()))
+            response_bot(respond_bot, prob_val, get_time(new Date())),
           );
         } else {
           $("#content-chat-feed").append(
             response_bot(
               "Maaf, Saya tidak mengerti, ada yang bisa saya bantu?",
               prob_val,
-              get_time(new Date())
-            )
+              get_time(new Date()),
+            ),
           );
         }
       }
@@ -491,60 +532,66 @@ function App() {
         <div className="card d-flex flex-column vh-100 overflow-hidden">
           <Header />
           <Routes>
-            <Route path="/" element={
-              <div
-                className="card-body"
-                style={{ overflowY: "scroll" }}
-                id="content-chat-feed"
-              >
-                <div className="containerbot">
-                  <img src={logobot} alt="Avatar" style={{ width: "100%" }} />
-                  <div className="row">
-                    <div className="col-sm-8 pt-1">Hi, selamat datang :)</div>
-                    <div className="col-sm-4 pt-1">
-                      <span className="time-right">{currentTime}</span>
+            <Route
+              path="/"
+              element={
+                <div
+                  className="card-body"
+                  style={{ overflowY: "scroll" }}
+                  id="content-chat-feed"
+                >
+                  <div className="containerbot">
+                    <img src={logobot} alt="Avatar" style={{ width: "100%" }} />
+                    <div className="row">
+                      <div className="col-sm-8 pt-1">Hi, selamat datang :)</div>
+                      <div className="col-sm-4 pt-1">
+                        <span className="time-right">{currentTime}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            } />
+              }
+            />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
           </Routes>
           <Routes>
-            <Route path="/" element={
-              <div className="card-footer">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="input-chat"
-                    placeholder="Message Hermes"
-                    onKeyDown={_handleKeyDown}
-                  />
-                  <div className="input-group-append">
-                    <button
-                      className="btn btn-primary"
-                      type="button"
-                      onClick={handleButtonSend}
-                    >
-                      <span style={{ color: "black" }}>
-                        <FiSend />
-                      </span>
-                    </button>
+            <Route
+              path="/"
+              element={
+                <div className="card-footer">
+                  <div className="input-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="input-chat"
+                      placeholder="Message Hermes"
+                      onKeyDown={_handleKeyDown}
+                    />
+                    <div className="input-group-append">
+                      <button
+                        className="btn btn-primary"
+                        type="button"
+                        onClick={handleButtonSend}
+                      >
+                        <span style={{ color: "black" }}>
+                          <FiSend />
+                        </span>
+                      </button>
+                    </div>
                   </div>
+                  <p>
+                    Hermes AI may make mistakes and provide inaccurate
+                    information, for educational purposes see the source code in
+                    About Hermes.
+                  </p>
                 </div>
-                <p>
-                  Hermes AI may make mistakes and provide inaccurate information, for
-                  educational purposes see the source code in About Hermes.
-                </p>
-              </div>
-            } />
+              }
+            />
           </Routes>
         </div>
       </div>
     </BrowserRouter>
   );
 }
-
 export default App;

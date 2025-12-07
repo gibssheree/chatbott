@@ -88,3 +88,203 @@ export function get_date(date) {
   const year = date.getFullYear();
   return `${day} ${month} ${year}`;
 }
+
+/**
+ * Flatten categorized patterns ke format array biasa
+ * @param {Object} categorizedData - Data patterns yang dikategorikan
+ * @returns {Array} - Array of {phrase, result} objects
+ */
+export function flattenPatterns(categorizedData) {
+  const flatData = [];
+  
+  // Fungsi rekursif untuk traverse nested object
+  function traverse(obj) {
+    if (obj.intents) {
+      // Level dengan intents langsung (tanpa subcategories)
+      Object.keys(obj.intents).forEach(intentName => {
+        const patterns = obj.intents[intentName];
+        patterns.forEach(pattern => {
+          flatData.push({
+            phrase: pattern.phrase,
+            result: { [intentName]: 1 }
+          });
+        });
+      });
+    }
+    
+    if (obj.subcategories) {
+      // Level dengan subcategories
+      Object.keys(obj.subcategories).forEach(subcatKey => {
+        traverse(obj.subcategories[subcatKey]);
+      });
+    }
+  }
+  
+  // Traverse semua categories
+  Object.keys(categorizedData).forEach(categoryKey => {
+    const category = categorizedData[categoryKey];
+    traverse(category);
+  });
+  
+  return flatData;
+}
+
+/**
+ * Flatten categorized responses ke format array biasa
+ * @param {Object} categorizedData - Data responses yang dikategorikan
+ * @returns {Array} - Array of {intentName: [responses]} objects
+ */
+export function flattenResponses(categorizedData) {
+  const flatData = [];
+  
+  // Fungsi rekursif untuk traverse nested object
+  function traverse(obj) {
+    Object.keys(obj).forEach(key => {
+      const value = obj[key];
+      
+      // Jika value adalah array, berarti ini adalah responses
+      if (Array.isArray(value)) {
+        flatData.push({ [key]: value });
+      } 
+      // Jika value adalah object, traverse lebih dalam
+      else if (typeof value === 'object' && value !== null) {
+        traverse(value);
+      }
+    });
+  }
+  
+  traverse(categorizedData);
+  
+  return flatData;
+}
+
+/**
+ * Get category path untuk intent tertentu
+ * @param {Object} categorizedData - Data patterns yang dikategorikan
+ * @param {String} intentName - Nama intent yang dicari
+ * @returns {String} - Path kategori (contoh: "general-knowledge > geography")
+ */
+export function getCategoryPath(categorizedData, intentName) {
+  let path = [];
+  
+  function traverse(obj, currentPath = []) {
+    // Check di level intents
+    if (obj.intents && obj.intents[intentName]) {
+      path = [...currentPath];
+      return true;
+    }
+    
+    // Check di subcategories
+    if (obj.subcategories) {
+      for (const subcatKey in obj.subcategories) {
+        const subcat = obj.subcategories[subcatKey];
+        if (traverse(subcat, [...currentPath, subcat.description || subcatKey])) {
+          return true;
+        }
+      }
+    }
+    
+    return false;
+  }
+  
+  // Traverse semua categories
+  for (const categoryKey in categorizedData) {
+    const category = categorizedData[categoryKey];
+    if (traverse(category, [category.description || categoryKey])) {
+      break;
+    }
+  }
+  
+  return path.join(' > ');
+}
+
+/**
+ * Get all intents grouped by category
+ * @param {Object} categorizedData - Data patterns yang dikategorikan
+ * @returns {Object} - Object dengan struktur {categoryName: [intentNames]}
+ */
+export function getIntentsByCategory(categorizedData) {
+  const result = {};
+  
+  function traverse(obj, categoryName) {
+    if (obj.intents) {
+      if (!result[categoryName]) {
+        result[categoryName] = [];
+      }
+      result[categoryName].push(...Object.keys(obj.intents));
+    }
+    
+    if (obj.subcategories) {
+      Object.keys(obj.subcategories).forEach(subcatKey => {
+        const subcat = obj.subcategories[subcatKey];
+        const subcatName = subcat.description || subcatKey;
+        traverse(subcat, `${categoryName} > ${subcatName}`);
+      });
+    }
+  }
+  
+  Object.keys(categorizedData).forEach(categoryKey => {
+    const category = categorizedData[categoryKey];
+    const categoryName = category.description || categoryKey;
+    traverse(category, categoryName);
+  });
+  
+  return result;
+}
+
+/**
+ * Validate categorized data structure
+ * @param {Object} patterns - Categorized patterns data
+ * @param {Object} responses - Categorized responses data
+ * @returns {Object} - {valid: boolean, errors: [], warnings: []}
+ */
+export function validateCategorizedData(patterns, responses) {
+  const errors = [];
+  const warnings = [];
+  
+  // Get all intents from patterns
+  const patternsIntents = new Set();
+  function extractIntents(obj) {
+    if (obj.intents) {
+      Object.keys(obj.intents).forEach(intent => patternsIntents.add(intent));
+    }
+    if (obj.subcategories) {
+      Object.values(obj.subcategories).forEach(extractIntents);
+    }
+  }
+  Object.values(patterns).forEach(extractIntents);
+  
+  // Get all intents from responses
+  const responsesIntents = new Set();
+  function extractResponseIntents(obj) {
+    Object.keys(obj).forEach(key => {
+      const value = obj[key];
+      if (Array.isArray(value)) {
+        responsesIntents.add(key);
+      } else if (typeof value === 'object' && value !== null) {
+        extractResponseIntents(value);
+      }
+    });
+  }
+  extractResponseIntents(responses);
+  
+  // Check for intents in patterns but not in responses
+  patternsIntents.forEach(intent => {
+    if (!responsesIntents.has(intent)) {
+      errors.push(`Intent "${intent}" has patterns but no responses`);
+    }
+  });
+  
+  // Check for intents in responses but not in patterns
+  responsesIntents.forEach(intent => {
+    if (!patternsIntents.has(intent)) {
+      warnings.push(`Intent "${intent}" has responses but no patterns`);
+    }
+  });
+  
+  return {
+    valid: errors.length === 0,
+    errors,
+    warnings
+  };
+}
