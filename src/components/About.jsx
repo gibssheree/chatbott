@@ -7,8 +7,8 @@ const About = () => {
     <Container className="py-4">
       <Row className="justify-content-center">
         <Col md={10}>
-          <Card className="shadow-sm">
-            <Card.Header className="bg-primary text-white">
+          <Card className="shadow-sm page-dark-card">
+            <Card.Header>
               <h2 className="mb-0">
                 <FiCpu className="me-2" />
                 About Hermes AI
@@ -19,18 +19,18 @@ const About = () => {
                 <Col md={8}>
                   <h4 className="text-primary mb-3">Welcome to Hermes AI</h4>
                   <p className="lead">
-                    Hermes AI is an intelligent chatbot powered by advanced neural networks 
-                    and machine learning algorithms. Built with React and Brain.js, it provides 
+                    Hermes AI is an intelligent chatbot powered by advanced neural networks
+                    and machine learning algorithms. Built with React and Brain.js, it provides
                     natural language processing capabilities for educational and practical purposes.
                   </p>
                   <p>
-                    Our AI assistant can help you with various tasks including mathematical calculations, 
-                    answering questions, providing time and date information, and engaging in meaningful 
+                    Our AI assistant can help you with various tasks including mathematical calculations,
+                    answering questions, providing time and date information, and engaging in meaningful
                     conversations. Hermes AI is designed to be both educational and entertaining.
                   </p>
                 </Col>
                 <Col md={4} className="text-center">
-                  <div className="bg-light p-4 rounded">
+                  <div className="page-dark-tile p-4 rounded">
                     <FiCpu size={48} className="text-primary mb-3" />
                     <h6>Powered by Brain.js</h6>
                     <Badge bg="success" className="mb-2">Neural Network</Badge>
@@ -49,7 +49,7 @@ const About = () => {
                   <h5 className="text-primary mb-3">Key Features</h5>
                 </Col>
                 <Col md={4} className="mb-3">
-                  <div className="text-center p-3 border rounded">
+                  <div className="text-center p-3 rounded page-dark-tile">
                     <FiTarget size={32} className="text-primary mb-2" />
                     <h6>Smart Responses</h6>
                     <p className="small text-muted">
@@ -58,7 +58,7 @@ const About = () => {
                   </div>
                 </Col>
                 <Col md={4} className="mb-3">
-                  <div className="text-center p-3 border rounded">
+                  <div className="text-center p-3 rounded page-dark-tile">
                     <FiCode size={32} className="text-primary mb-2" />
                     <h6>Math Calculations</h6>
                     <p className="small text-muted">
@@ -67,7 +67,7 @@ const About = () => {
                   </div>
                 </Col>
                 <Col md={4} className="mb-3">
-                  <div className="text-center p-3 border rounded">
+                  <div className="text-center p-3 rounded page-dark-tile">
                     <FiZap size={32} className="text-primary mb-2" />
                     <h6>Real-time Processing</h6>
                     <p className="small text-muted">
@@ -126,7 +126,7 @@ const About = () => {
                 </Col>
               </Row>
 
-              <div className="bg-light p-4 rounded">
+              <div className="page-dark-tile p-4 rounded">
                 <h6 className="text-primary mb-3">Disclaimer</h6>
                 <p className="small text-muted mb-0">
                   Hermes AI may make mistakes and provide inaccurate information. 

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { SlArrowRight } from "react-icons/sl";
+import { FiX } from "react-icons/fi";
 import logobot from "./hermesAI.png";
 
-const Sidebar = () => {
+const Sidebar = ({
+  sessions = [],
+  activeSessionId,
+  onNewChat,
+  onSelectSession,
+  onDeleteSession,
+}) => {
   const [open, setOpen] = useState(false);
-  const [chatHistory, setChatHistory] = useState([
-    "How to use React hooks",
-    "Best practices for CSS",
-    "Project discussion",
-    "Performance optimization",
-  ]);
 
   const toggleSidebar = () => setOpen((prev) => !prev);
 
@@ -27,7 +28,7 @@ const Sidebar = () => {
           <img src={logobot} alt="Hermes AI" className="logo" />
         </div>
         <div className="items">
-          <NavItem title="New Chat" isPrimary />
+          <NavItem title="New Chat" isPrimary onClick={onNewChat} />
           <div className="chat-history">
             <h4
               style={{
@@ -38,11 +39,32 @@ const Sidebar = () => {
             >
               Chat History
             </h4>
-            {chatHistory.map((chat, index) => (
-              <div key={index} className="chat-history-item">
-                {chat}
-              </div>
-            ))}
+            {sessions.length === 0 ? (
+              <p className="chat-history-empty">Belum ada riwayat chat</p>
+            ) : (
+              sessions.map((session) => (
+                <div
+                  key={session.id}
+                  className={`chat-history-item ${
+                    session.id === activeSessionId ? "active" : ""
+                  }`}
+                  onClick={() => onSelectSession(session.id)}
+                >
+                  <span className="chat-history-title">{session.title}</span>
+                  <button
+                    type="button"
+                    className="chat-history-delete"
+                    aria-label={`Hapus chat "${session.title}"`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onDeleteSession(session.id);
+                    }}
+                  >
+                    <FiX />
+                  </button>
+                </div>
+              ))
+            )}
           </div>
         </div>
         <p className="font">
@@ -54,11 +76,12 @@ const Sidebar = () => {
   );
 };
 
-const NavItem = ({ title, isPrimary }) => (
+const NavItem = ({ title, isPrimary, onClick }) => (
   <div className="item">
     <button
       className="style"
       style={isPrimary ? { backgroundColor: "#383434" } : {}}
+      onClick={onClick}
     >
       <span>{title}</span>
     </button>

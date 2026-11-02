@@ -1,6 +1,11 @@
-import $ from "jquery";
-import logobot from "./hermes.png";
-import logouser from "./user.png";
+// NOTE: profanity filtering function sudah dipindahkan ke profanityFilter.js
+// untuk better maintainability dan reusability
+// NOTE: math expression parsing function sudah dipindahkan ke mathParser.js
+// menggunakan safe evaluation tanpa eval() untuk security
+// NOTE: chat bubble rendering dipindahkan ke komponen ChatBubble.jsx (JSX, bukan
+// HTML string) supaya React yang meng-escape konten dan tidak butuh
+// dangerouslySetInnerHTML
+
 //const fs = require("fs");
 //// Save network state to JSON file.
 //const networkState = model_network.toJSON();
@@ -20,7 +25,7 @@ export function build_dictionary(json_data) {
   // lowercase
   str_data = str_data.toLowerCase();
   // remove punctuation
-  str_data = str_data.replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
+  str_data = str_data.replace(/[^\w\s']|_/g, "").replace(/\s+/g, " ");
   // remove dupliate items
   var arr_duplicate = str_data.split(" ");
   var str_fix = arr_duplicate
@@ -37,36 +42,19 @@ export function clean_input(txt_input) {
   // lowercase
   txt_input = txt_input.toLowerCase();
   // remove punctuation
-  txt_input = txt_input.replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ");
+  txt_input = txt_input.replace(/[^\w\s']|_/g, "").replace(/\s+/g, " ");
 
   return txt_input;
 }
 
-// user chat replay
+// user chat message (rendered by ChatBubble.jsx, no HTML string involved)
 export function response_user(chat, date) {
-  var html =
-    "<div class='containerbot darker'> <img src='" +
-    logouser +
-    "' alt='Avatar' class='right' style='width:100%;'> <div class='row pt-0'> <div class='col-sm-2'><span class='time-left'>" +
-    date +
-    "</span></div> <div class='col-sm-10 text-end'>" +
-    chat +
-    "</div></div></div>";
-  return html;
+  return { sender: "user", text: chat, time: date };
 }
 
+// bot chat message (rendered by ChatBubble.jsx, no HTML string involved)
 export function response_bot(chat, prob, date) {
-  var html =
-    "<div class='containerbot'> <img src='" +
-    logobot +
-    "' alt='Avatar' style='width:100%;'> <div class='row'> <div class='col-sm-8 pt-0'>" +
-    chat +
-    "</div> <div class='col-sm-4 pt-1'><span class='time-right'>" +
-    prob +
-    "%</br>" +
-    date +
-    "</span></div> </div> </div>";
-  return html;
+  return { sender: "bot", text: chat, prob, time: date };
 }
 
 // get time date today
@@ -271,16 +259,25 @@ export function validateCategorizedData(patterns, responses) {
   // Check for intents in patterns but not in responses
   patternsIntents.forEach(intent => {
     if (!responsesIntents.has(intent)) {
-      errors.push(`Intent "${intent}" has patterns but no responses`);
+      const errorMsg = `Intent "${intent}" has patterns but no responses`;
+      errors.push(errorMsg);
+      console.error('❌ Data validation error:', errorMsg);
     }
   });
   
   // Check for intents in responses but not in patterns
   responsesIntents.forEach(intent => {
     if (!patternsIntents.has(intent)) {
-      warnings.push(`Intent "${intent}" has responses but no patterns`);
+      const warningMsg = `Intent "${intent}" has responses but no patterns`;
+      warnings.push(warningMsg);
+      console.warn('⚠️ Data validation warning:', warningMsg);
     }
   });
+  
+  // Log summary
+  if (errors.length === 0 && warnings.length === 0) {
+    console.log('✅ Data validation passed: all intents have matching patterns and responses');
+  }
   
   return {
     valid: errors.length === 0,
